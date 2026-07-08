@@ -32,14 +32,14 @@ export default function Projects() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
             whileHover={{ y: -4 }}
-            className="group bg-surface border border-border rounded-2xl p-7 hover:border-cyan/40 transition-colors"
+            className="group bg-surface border border-border rounded-2xl p-7 hover:border-cyan/40 transition-colors flex flex-col"
           >
             <div className="flex items-start justify-between mb-4">
               <h3 className="font-display text-xl font-semibold">
                 {p.name}
               </h3>
               <span
-                className={`font-mono text-[10px] px-2 py-1 rounded-full border ${
+                className={`font-mono text-[10px] px-2 py-1 rounded-full border shrink-0 ml-2 ${
                   p.status === "In Progress"
                     ? "border-violet/40 text-violet"
                     : "border-cyan/40 text-cyan"
@@ -49,10 +49,10 @@ export default function Projects() {
               </span>
             </div>
             <p className="font-mono text-xs text-muted mb-3">{p.type}</p>
-            <p className="text-sm text-muted leading-relaxed mb-5">
+            <p className="text-sm text-muted leading-relaxed mb-5 flex-1">
               {p.description}
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-5">
               {p.tech.map((t) => (
                 <span
                   key={t}
@@ -62,6 +62,16 @@ export default function Projects() {
                 </span>
               ))}
             </div>
+            {p.link && (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-xs px-4 py-2 rounded-full border border-cyan/40 text-cyan hover:bg-cyan/10 transition-colors w-fit mt-auto"
+              >
+                Visit website ↗
+              </a>
+            )}
           </motion.div>
         ))}
       </div>
